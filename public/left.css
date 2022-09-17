@@ -1,0 +1,40 @@
+.top-left{
+    width: 15vw;
+    display: flex;
+    justify-content: space-between;
+}
+.name{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+.name>a{
+    text-decoration: none;
+    color: black;
+    margin: 10px 0px;
+}
+.name>a>p{
+    padding: 5px 0px;
+    display: flex;
+}
+.name>a>span{
+    display: none;
+}
+/* .name>p,.name>span{
+    align-items: center;
+    margin: 20px 0 20px 10px;
+    cursor: pointer;
+    padding: 20px 0px;
+} */
+.name>a>p{
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+.line{
+    width: 2px;
+    height: 100vh;
+    background-color: rgb(177, 184, 183);
+}

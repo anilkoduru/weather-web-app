@@ -23,12 +23,10 @@ const forNext7days = document.getElementById("for-next7days");
 document.querySelector(".next-7days").addEventListener("click",()=>{
     document.querySelector(".right").classList.add("active");
 })
-if(screen.width<600){
-    document.querySelector(".chevron-left").addEventListener("click",()=>{
-        document.querySelector(".right").classList.remove("active");
-    })
-}
 
+document.querySelector(".arrow-back").addEventListener("click",()=>{
+    document.querySelector(".right").classList.remove("active");
+})
 city.addEventListener("submit",(e)=>{
     e.preventDefault();
     const cityname = e.target[0].value;

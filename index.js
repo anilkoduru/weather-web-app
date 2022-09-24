@@ -17,7 +17,7 @@ let apikey = process.env.API_KEY;
 const app = express();
 app.use(flash());
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
+app.use("/",express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 

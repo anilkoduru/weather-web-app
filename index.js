@@ -59,10 +59,12 @@ app.get("/",function(req,res){
     res.redirect("/city");
 });
 app.get("/login",function(req,res){
-    res.render("login",{message:req.flash('mssg')});
+    // res.send("login",{message:req.flash('mssg')});
+    res.sendFile(__dirname + "/public/login.html");
 });
 app.get("/register",function(req,res){
-    res.render("register",{message:req.flash('mssg')});
+    // res.render("register",{message:req.flash('mssg')});
+    res.sendFile(__dirname + "/public/register.html");
 });
 app.get("/logout",function(req,res){
     req.logout(function(err){

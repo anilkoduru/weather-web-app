@@ -11,14 +11,14 @@ const https = require("https");
 const lodash = require("lodash");
 const { request } = require("http");
 const { header } = require("express/lib/response");
-const { path } = require("express/lib/application");
+const  path  = require("path")
 require('dotenv').config();
 
 let apikey = process.env.API_KEY;
 const app = express();
 app.use(flash());
 app.set('view engine', 'ejs');
-app.use("/",express.static(path.join(__dirname+'public')));
+app.use("/",express.static(path.join(__dirname,'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 

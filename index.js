@@ -23,7 +23,7 @@ app.use(cookieParser());
 
 app.use(session({
     secret: 'this is secret',
-    // cookie: { maxAge: 60000 },
+    // cookie: { maxAge: 60000 } ,
     resave: false,
     saveUninitialized: false
 }));

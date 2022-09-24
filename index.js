@@ -6,7 +6,6 @@ const cookieParser = require("cookie-parser");
 var session = require('express-session');
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
-const ejs = require("ejs");
 const https = require("https");
 const lodash = require("lodash");
 const { request } = require("http");
@@ -151,7 +150,7 @@ app.post("/register", function(req, res){
         if(err){
             console.log(err);
         }else if(result == null){
-            req.flash('mssg',"user doesn't exist");
+            // req.flash('mssg',"user doesn't exist");
             res.redirect("/login");
         }
         else{

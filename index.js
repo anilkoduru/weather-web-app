@@ -133,7 +133,6 @@ app.post("/register", function(req, res){
                 }
               })
         }else{
-            req.flash('mssg',"Existing User");
             res.redirect("/register");
         }
     })
@@ -215,12 +214,12 @@ app.post("/fav",function(req,res){
              })
             }
             else{
-                req.flash('mssg',"Already Exists");
                 res.redirect("/fav");
             }
         })
     }
 });
+app.get('/favicon.ico', (req, res) => res.status(204));
 
 let port = process.env.PORT;
 if (port == null || port == "") {

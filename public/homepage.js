@@ -281,11 +281,11 @@ $(window).on("load",function(){
     $(".center").fadeOut("slow");
 })
 
-window.onload = function() {
-    if(!window.location.hash) {
-        window.location = window.location + '#loaded';
-        window.location.reload();
-    }
-}
+// window.onload = function() {
+//     if(!window.location.hash) {
+//         window.location = window.location + '#loaded';
+//         window.location.reload();
+//     }
+// }
 
 $('#Left-nav').load('left.html');

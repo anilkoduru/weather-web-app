@@ -59,6 +59,7 @@ else{
 }
 
 navigator.geolocation.getCurrentPosition((success) => {
+    console.log(success);
     fetchdatalive(success.coords.latitude,success.coords.longitude);
 },(err)=>{
     console.log(err);

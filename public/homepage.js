@@ -277,6 +277,8 @@ async function fetchdatalive(latitude,longitude){
 
 $(window).on("load",function(){
     $(".center").fadeOut("slow");
+    $(".center").fadeIn("slow");
+    $(".center").fadeOut("slow");
 })
 
 window.onload = function() {

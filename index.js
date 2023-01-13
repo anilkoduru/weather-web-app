@@ -72,12 +72,7 @@ app.get("/logout",function(req,res){
 })
 
 app.get("/city",function(req,res){
-    if(req.isAuthenticated()){
-        res.sendFile(__dirname+ "/public/homepage.html",{key:process.env.API_KEY});
-    }
-    else{
-        res.redirect("/login")
-    }
+    res.sendFile(__dirname+ "/public/homepage.html",{key:process.env.API_KEY});
 })
 
 app.post("/delete",function(req,res){
@@ -93,19 +88,20 @@ app.post("/delete",function(req,res){
 
 app.get("/getApikey",(req,res)=>{
     res.header=header
-    if(req.isAuthenticated()){
-        res.json({key:process.env.API_KEY})
-        return res
-    }
-      else{
-        res.redirect("/login");
-      }
-    
+    // if(req.isAuthenticated()){
+    //     res.json({key:process.env.API_KEY})
+    //     return res
+    // }
+    //   else{
+    //     res.redirect("/login");
+    //   }
+    res.json({key:process.env.API_KEY})
+    return res
 })
 
 app.get("/authenticate",function(req,res){
     if(req.isAuthenticated()){
-      res.redirect("/city");
+      res.redirect("/fav");
     }
     else{
       res.redirect("/login");
@@ -168,26 +164,31 @@ app.post("/register", function(req, res){
   });
 
 app.get("/fav",function(req,res){
-    LocationDB.find({},function(err,docs){
-        if(err){
-            console.log(err);
-        }
-        else{
-            docs.forEach(function(element){
-                https.get("https://api.openweathermap.org/data/2.5/weather?q="+element.city+"&appid="+apikey+"&units=metric",function(response){
-                response.on('data',function(data){
-                    const weatherdata = JSON.parse(data);
-                    LocationDB.findOneAndUpdate({city:element.city},{temp:Math.floor(weatherdata.main.temp),icon:"http://openweathermap.org/img/wn/"+weatherdata.weather[0].icon+"@2x.png"},function(err){
-                        if(err){
-                               console.log(err);
-                        }
+    if(req.isAuthenticated()){
+        LocationDB.find({},function(err,docs){
+            if(err){
+                console.log(err);
+            }
+            else{
+                docs.forEach(function(element){
+                    https.get("https://api.openweathermap.org/data/2.5/weather?q="+element.city+"&appid="+apikey+"&units=metric",function(response){
+                    response.on('data',function(data){
+                        const weatherdata = JSON.parse(data);
+                        LocationDB.findOneAndUpdate({city:element.city},{temp:Math.floor(weatherdata.main.temp),icon:"http://openweathermap.org/img/wn/"+weatherdata.weather[0].icon+"@2x.png"},function(err){
+                            if(err){
+                                   console.log(err);
+                            }
+                        })
                     })
                 })
-            })
-        })   
+            })   
+        }
+        res.render('fav',{favLoc:docs,message:req.flash('mssg')});
+        })
     }
-    res.render('fav',{favLoc:docs,message:req.flash('mssg')});
-    })
+    else{
+        res.redirect("/login")
+    }
 });
 
 app.post("/fav",function(req,res){
